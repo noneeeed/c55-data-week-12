@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: nyc_taxi
+    schema: nyc_taxi     
+    tables:
+      - name: raw_trips
+        description: "One row per green taxi trip for January 2024 (~57K rows)."
+      - name: raw_zones
+        description: "NYC taxi zone lookup (265 rows mapping location IDs to boroughs)."

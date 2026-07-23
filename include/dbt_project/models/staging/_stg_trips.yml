@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: stg_trips
+    description: "Cleaned green taxi trips, one row per trip. This reads from the raw_trips source."
+    columns:
+      - name: pickup_datetime
+        description: "when the trip started"
+        tests:
+          - not_null
+      - name: pickup_location_id
+        description: "TLC zone id where the trip started"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_zones')
+              field: location_id
+              config:
+                severity: warn
+      - name: fare_amount
+        description: "cost of the trip in USD"
+      - name: tip_amount
+        description: "tip paid for the trip"
+       
+      - name: trip_distance
+        description: "distance of the trip in miles"
+         
+      - name: tip_pct
+        description: "percentage of tip relative to trip cost"
+       

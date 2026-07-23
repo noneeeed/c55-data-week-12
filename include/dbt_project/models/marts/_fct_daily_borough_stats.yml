@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: fct_daily_borough_stats
+    description: "One row per completed NYC green taxi trip in January 2024, with
+      pickup/dropoff zone attributes folded in (OBT-style mart). Queried
+      directly by dashboards and ad-hoc analysis.
+
+      **Grain:** one row per trip.
+      **Source:** `public.raw_trips` joined to `public.raw_zones` on
+      `pickup_location_id` and `dropoff_location_id`.
+      **Not included:** trips where `pickup_location_id` is NULL (dropped
+      in `stg_trips`); duplicate rows from the TLC source are kept as-is
+      and surfaced by `dbt_utils.unique_combination_of_columns`."
+    # TODO: Task 5 -- add the compound uniqueness test on the mart's primary
+    # key (pickup_borough, pickup_date). You need the dbt_utils package for
+    # this: declare it in packages.yml and run `dbt deps` first.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - pickup_borough
+            - pickup_date
+          severity: warn
+    columns:
+      - name: pickup_borough
+        description: "TLC borough where the trip started"
+      - name: pickup_date
+        description: "the day the trip started (date only, no time)"
+      - name: trip_count
+        description: "total trips that started in this borough on this day"
+      - name: total_fare
+        description: "total revenue from trips that started in this borough on this day in USD"
+      - name: avg_tip_pct
+        description: "average tip percentage for trips that started in this borough on this day, expressed as a decimal (e.g. 0.15 = 15%)"
+      - name: avg_trip_distance
+        description: "average distance of trips that started in this borough on this day, in miles"

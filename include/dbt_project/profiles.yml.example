@@ -1,0 +1,17 @@
+nyc_taxi_borough_daily:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('PG_HOST') }}"
+      port: 5432
+      user: "{{ env_var('PG_USER') }}"
+      password: "{{ env_var('PG_PASSWORD') }}"
+      dbname: "{{ env_var('PG_DBNAME', 'postgres') }}"
+      schema: "dev_bader"   
+      threads: 1
+      sslmode: require
+
+# Copy this file to profiles.yml (same directory), fill in your name, and ensure
+# PG_HOST, PG_USER, PG_PASSWORD, and PG_DBNAME are set in your environment.
+# profiles.yml is git-ignored — never commit it with a real password.

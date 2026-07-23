@@ -1,0 +1,10 @@
+{
+  "name": "HYF Week 10: dbt assignment",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "postCreateCommand": "pip install --user dbt-core dbt-postgres",
+  "customizations": {
+    "vscode": {
+      "extensions": ["innoverio.vscode-dbt-power-user"]
+    }
+  }
+}

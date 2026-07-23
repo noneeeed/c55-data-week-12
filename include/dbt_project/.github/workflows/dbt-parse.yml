@@ -1,0 +1,44 @@
+name: dbt parse
+
+# Validates project structure and Jinja without a database connection.
+# dbt_project.yml ships with the template, so this always runs.
+# The static autograder (.hyf/test.sh) runs separately via grade-assignment.yml.
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  parse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check for dbt_project.yml
+        id: check
+        run: |
+          if [[ -f dbt_project.yml ]]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::dbt_project.yml not found -- it ships with the template; did you delete it? Skipping parse."
+          fi
+      - uses: actions/setup-python@v5
+        if: steps.check.outputs.present == 'true'
+        with:
+          python-version: "3.11"
+      - name: Install dbt
+        if: steps.check.outputs.present == 'true'
+        run: pip install dbt-core dbt-postgres
+      - name: dbt deps + parse (no database connection needed)
+        if: steps.check.outputs.present == 'true'
+        env:
+          PG_HOST: localhost
+          PG_USER: ci
+          PG_PASSWORD: ci-dummy
+          PG_DBNAME: postgres
+        run: |
+          cp profiles.yml.example profiles.yml
+          sed -i 's/dev_<your_name>/dev_ci/' profiles.yml
+          dbt deps
+          dbt parse
