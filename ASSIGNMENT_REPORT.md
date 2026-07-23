@@ -23,6 +23,16 @@ Task failed with exceptionAirflowException: Bash command failed. The command ret
 
 
 
+## deploy proof
+https://github.com/lassebenni/c55-shared-airflow/pull/6
+image is in images folder;
+![Shared deploy](/images/deploy.png)
+
+
+
+
+
+
 
 row count after and before double backfill is the same.
 
