@@ -4,19 +4,44 @@
 
 ## Schedule choice and reason
 
-TODO
+{{ds}}  logical date. because choosing timenow i couldnt manually trigger runs on airflow choosing a specifec past date.
 
 ## Task dependency graph
 
-TODO — describe the chain (ingest -> dbt_run -> dbt_test) and why the order matters.
+ingest_taxi_month() >> dbt_run >> dbt_test
+chain matter because its linear and not exponential it follows that exact order in one line.
+
 
 ## dbt project used
-
-TODO — your Week 10 project or the class reference?
+Week 10 project
 
 ## One debugging case I resolved
 
-TODO — what failed, how you found the cause in the logs, and the fix.
+placed dbt project in the wrong place and project couldnt find them.
+found out from the logs in the dbt run.
+Task failed with exceptionAirflowException: Bash command failed. The command returned a non-zero exit code 2.
 
-<!-- Target tier: also document your {{ ds }} parameter usage and the
-     backfill command(s) you ran, with before/after row counts. -->
+
+
+
+row count after and before double backfill is the same.
+
+SELECT to_char(lpep_pickup_datetime, 'YYYY-MM') AS month, count(*)
+FROM airflow_bader.raw_trips
+GROUP BY 1 ORDER BY
+
+
+
+month  |count|
+-------+-----+
+2008-12|    2|
+2009-01|    2|
+2023-12|    4|
+2024-01|56555|
+2024-02|53578|
+2024-03|57451|
+2024-04|56472|
+2024-05|61007|
+2024-06|54736|
+2024-07|51811|
+2024-08|  125|
