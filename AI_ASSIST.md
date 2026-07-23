@@ -1,8 +1,4 @@
 # AI assistance log
-
-<!-- Document at least one point where you used an LLM on this assignment.
-     Never paste connection strings, passwords, or real data. Replace TODO. -->
-
 ## Use 1
 
 **Prompt I sent:** Astro Runtime Version: 3.3-1
@@ -109,8 +105,6 @@ second instance> **Prompt I sent:**
 
 i am creating a runbook # RUNBOOK
 
-<!-- Replace every TODO with real content. Another student should be able to
-     operate your DAG from this file alone, without reading your Python. -->
 
 ## How to trigger the DAG manually
 
@@ -135,9 +129,7 @@ using url
 
 ## Top 3 likely failures and first response
 
-1. TODO — symptom, first check, 
-3. forgotten az login to fetch pg config
-
+1. forgotten az login to fetch pg config
 2. astro config set postgres.port 5433 on port conflict
 3. forgotten to add PG_URL using astro dev run connections add azure_pg --conn-uri "$PG_URL"
 create runbook.md using information and pictures similiar to https://hub.hackyourfuture.nl/Airflow-Fundamentals-de0ff4a4371946ee9945b61b6f47d3eb
