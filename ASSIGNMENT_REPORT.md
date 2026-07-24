@@ -32,15 +32,15 @@ image is in images folder;
 
 
 
+backfill proof ![alt text](/images/backfill.png)
 
-
-row count after and before double backfill is the same.
+Row count after and before double backfill is the same.
 
 SELECT to_char(lpep_pickup_datetime, 'YYYY-MM') AS month, count(*)
 FROM airflow_bader.raw_trips
 GROUP BY 1 ORDER BY
 
-
+![Shared deploy](/images/rowcount.png)
 
 month  |count|
 -------+-----+
