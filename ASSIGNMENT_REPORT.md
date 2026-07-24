@@ -1,6 +1,6 @@
 # Assignment report
 
-<!-- Replace every TODO. Keep it short: a few sentences per section. -->
+<!-- Fill in every section below. Keep it short: a few sentences each. -->
 
 ## Schedule choice and reason
 

@@ -2,13 +2,6 @@
 ## Use 1
 
 **Prompt I sent:** Astro Runtime Version: 3.3-1
-============================= test session starts ==============================
-platform linux -- Python 3.14.6, pytest-9.1.1, pluggy-1.6.0 -- /usr/local/bin/python
-cachedir: .pytest_cache
-rootdir: /
-configfile: pyproject.toml
-plugins: anyio-4.13.0
-collecting ... collected 2 items
 
 tests/test_dag_integrity.py::test_no_import_errors FAILED                [ 50%]
 tests/test_dag_integrity.py::test_every_dag_has_tags FAILED              [100%]
